@@ -7,6 +7,7 @@ public class ApiCallsConstants {
     public final static String DELETE_REQUEST = "DELETE";
     public final static String ACCEPT = "accept";
     public final static String TEXT_HTML = "text/html";
+    public final static String APP_JSON_TEXT_JS_ALL_ALL = "application/json, text/javascript, */*; q=0.01";
     public final static int CONNECTION_TIMEOUT = 5000;
     public final static int READ_TIMEOUT = 5000;
 }

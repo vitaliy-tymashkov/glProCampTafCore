@@ -39,3 +39,13 @@ How to run tests:
 - PUT - [x] 
 - POST - [x]
 - DELETE - [x]
+
+## Additional task
+
+4. Keystore added for sensitive information managing
+
+_Note: cleartext password here is only for educational purpose_
+
+4.1. For tests use ENV variables: KS_PASS=Mrt#42MSs2$2;KS_PATH=keystore.ks
+
+4.2. For KeyStoreUtility use ENV variables: KS_PASS=Mrt#42MSs2$2;KS_PATH=keystore.ks;user=gl-procamp-2021@globallogic.com;password=DXdUVEFNpHA8LXm

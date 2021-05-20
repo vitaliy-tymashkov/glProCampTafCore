@@ -7,11 +7,17 @@ public class Config {
     private static Config config;
 
     @Getter @Setter
+    private String authType;
+    @Getter @Setter
+    private String expiry;
+    @Getter @Setter
+    private String loginFrom;
+    @Getter @Setter
     private String baseUrl;
     @Getter @Setter
-    private String authBearerToken;
-    @Getter @Setter
     private String loginUrl;
+    @Getter @Setter
+    private String loginUrlApi;
 
     private Config() {
     }

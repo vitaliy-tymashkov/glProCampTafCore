@@ -19,6 +19,7 @@ dependencies {
 
     implementation group: 'org.slf4j', name: 'slf4j-api', version: '1.7.25'
     implementation group: 'org.slf4j', name: 'slf4j-nop', version: '1.7.30'
+    implementation group: 'com.google.code.gson', name: 'gson', version: '2.7'
 
     implementation 'org.testng:testng:7.1.0'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'

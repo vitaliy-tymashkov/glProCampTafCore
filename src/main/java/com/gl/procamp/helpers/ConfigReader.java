@@ -1,8 +1,11 @@
 package com.gl.procamp.helpers;
 
-import static com.gl.procamp.config.ConfigConstants.AUTH_BEARER_TOKEN;
+import static com.gl.procamp.config.ConfigConstants.AUTH_TYPE;
 import static com.gl.procamp.config.ConfigConstants.BASE_URL_KEY;
+import static com.gl.procamp.config.ConfigConstants.EXPIRY;
+import static com.gl.procamp.config.ConfigConstants.LOGIN_FROM;
 import static com.gl.procamp.config.ConfigConstants.LOGIN_URL;
+import static com.gl.procamp.config.ConfigConstants.LOGIN_URL_API;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -29,8 +32,11 @@ public class ConfigReader {
     }
 
     private static void setConfigProperties(Properties properties, Config config) {
+        config.setAuthType(properties.getProperty(AUTH_TYPE));
+        config.setExpiry(properties.getProperty(EXPIRY));
+        config.setLoginFrom(properties.getProperty(LOGIN_FROM));
         config.setBaseUrl(properties.getProperty(BASE_URL_KEY));
-        config.setAuthBearerToken(properties.getProperty(AUTH_BEARER_TOKEN));
         config.setLoginUrl(properties.getProperty(LOGIN_URL));
+        config.setLoginUrlApi(properties.getProperty(LOGIN_URL_API));
     }
 }
