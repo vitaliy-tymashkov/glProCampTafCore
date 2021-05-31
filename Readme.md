@@ -46,6 +46,18 @@ How to run tests:
 
 _Note: cleartext password here is only for educational purpose_
 
-4.1. For tests use ENV variables: KS_PASS=Mrt#42MSs2$2;KS_PATH=keystore.ks
+4.1. For tests use ENV variables: KS_PASS=Mrt#42MSs2$2;KS_PATH=keystore.ks;target=uat
 
 4.2. For KeyStoreUtility use ENV variables: KS_PASS=Mrt#42MSs2$2;KS_PATH=keystore.ks;user=gl-procamp-2021@globallogic.com;password=DXdUVEFNpHA8LXm
+_password in plain text is commited only for testing purpose_
+## Config order
+
+5. Configuration
+
+5.1. Properties are being handled in the following order:
+
+5.1.1. Environment variables.
+
+5.1.2. Files config. properties and envXXXX.properties (depending on env variable "target").
+
+5.1.3. Default values in default.properties.
