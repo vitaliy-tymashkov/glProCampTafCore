@@ -49,7 +49,7 @@ _Note: cleartext password here is only for educational purpose_
 4.1. For tests use ENV variables: KS_PASS=Mrt#42MSs2$2;KS_PATH=keystore.ks;target=uat
 
 4.2. For KeyStoreUtility use ENV variables: KS_PASS=Mrt#42MSs2$2;KS_PATH=keystore.ks;user=gl-procamp-2021@globallogic.com;password=DXdUVEFNpHA8LXm
-_password in plain text is commited only for testing purpose_
+_password in plain text is committed only for testing purpose_
 ## Config order
 
 5. Configuration

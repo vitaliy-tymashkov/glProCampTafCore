@@ -72,7 +72,7 @@ public class LoginTest extends AbstractLoginTest {
             String actualPage = httpApiClient.getPage(activeUrl);
             String actualLoginPageTitle = getActualLoginPageTitle(actualPage);
 
-            assertThat("Login page status code is not success", actualLoginPageTitle, is(TestsConstants.EXPECTED_LOGIN_PAGE_TITLE));
+            assertThat("Login page title is not correct", actualLoginPageTitle, is(TestsConstants.EXPECTED_LOGIN_PAGE_TITLE));
         } catch (IOException e) {
             logger.error("Failed with IOException {}", e.getMessage());
             fail("Failed with IOException: " + e.getMessage());
