@@ -24,17 +24,23 @@ public class AbstractHttpApiClient {
     protected Config config = Config.getInstance();
 
     protected void setAuthHeader(HttpURLConnection connection) {
-        if (config.getAuthType().equalsIgnoreCase(BASIC_AUTH)) {
-            //Usage of strings for sensitive data is not recommended!
+        prepareAuthHeader(connection, KeyStoreUtility.getSecret(USER_KS_ALIAS), KeyStoreUtility.getSecret(PASSWORD_KS_ALIAS));
+    }
+
+    protected void setAuthHeaderWithIncorrectCredentials(HttpURLConnection connection) {
+        prepareAuthHeader(connection,
+                Chars.concat(KeyStoreUtility.getSecret(USER_KS_ALIAS), "_INCORRECT_LOGIN".toCharArray()),
+                Chars.concat(KeyStoreUtility.getSecret(PASSWORD_KS_ALIAS), "_INCORRECT_LOGIN".toCharArray()));
+    }
+
+    private void prepareAuthHeader(HttpURLConnection connection, char[] user, char[] password) {
+        //Usage of strings for sensitive data is not recommended!
 //            String user = String.valueOf(KeyStoreUtility.getSecret(USER_ALIAS));
 //            String password = String.valueOf(KeyStoreUtility.getSecret(PASSWORD_ALIAS));
 //            String auth = user + ":" + password;
 //            byte[] encodedAuth0 = Base64.getEncoder().encode(auth.getBytes(StandardCharsets.UTF_8));
 //            String authHeaderValue0 = "Basic " + new String(encodedAuth0);
-
-            char[] user = KeyStoreUtility.getSecret(USER_KS_ALIAS);
-            char[] password = KeyStoreUtility.getSecret(PASSWORD_KS_ALIAS);
-
+        if (config.getAuthType().equalsIgnoreCase(BASIC_AUTH)) {
             byte[] bytes = toBytes(Chars.concat(user, ":".toCharArray(), password));
             byte[] encodedAuth = Base64.getEncoder().encode(bytes);
 

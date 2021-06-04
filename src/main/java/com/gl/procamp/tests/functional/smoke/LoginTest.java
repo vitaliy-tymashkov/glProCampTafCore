@@ -1,6 +1,8 @@
 package com.gl.procamp.tests.functional.smoke;
 
 import static com.gl.procamp.tests.repository.TestsGroupConstants.COSMOS_ID;
+import static com.gl.procamp.tests.repository.TestsGroupConstants.LOGIN;
+import static com.gl.procamp.tests.repository.TestsGroupConstants.NEGATIVE;
 import static com.gl.procamp.tests.repository.TestsGroupConstants.SMOKE_TEST;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
@@ -9,14 +11,11 @@ import static org.testng.AssertJUnit.assertFalse;
 
 import java.io.IOException;
 
-import com.gl.procamp.apiClients.HttpApiClient;
 import com.gl.procamp.config.Config;
 import com.gl.procamp.config.LookupOrder;
 import com.gl.procamp.tests.repository.TestsConstants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 /**
@@ -25,19 +24,7 @@ import org.testng.annotations.Test;
  * */
 public class LoginTest extends AbstractLoginTest {
     private static final Logger logger = LoggerFactory.getLogger(LoginTest.class);
-
-    HttpApiClient httpApiClient;
-    Config config = Config.getInstance();
-
-    @BeforeClass(groups = {SMOKE_TEST, COSMOS_ID})
-    public void setUp() {
-        httpApiClient = new HttpApiClient();
-    }
-
-    @AfterClass(groups = {SMOKE_TEST, COSMOS_ID})
-    public void tearDown() {
-        httpApiClient.disconnect();
-    }
+    private Config config = Config.getInstance();
 
     @Test(groups = {SMOKE_TEST, COSMOS_ID})
     public void testLoginStatusCode() {
@@ -51,7 +38,7 @@ public class LoginTest extends AbstractLoginTest {
         }
     }
 
-    @Test(groups = {SMOKE_TEST, COSMOS_ID})
+    @Test(groups = {SMOKE_TEST, COSMOS_ID, LOGIN})
     public void testWhenLoginWithCorrectCredentials_thenGetToken() {
         try {
             String activeUrl = config.getBaseUrl() + config.getLoginUrlApi();
@@ -59,6 +46,20 @@ public class LoginTest extends AbstractLoginTest {
             logger.debug("Login token = " + loginToken);
 
             assertFalse("Login Token is empty", loginToken.isEmpty());
+        } catch (IOException e) {
+            logger.error("Failed with IOException {}", e.getMessage());
+            fail("Failed with IOException: " + e.getMessage());
+        }
+    }
+
+    @Test(groups = {SMOKE_TEST, COSMOS_ID, LOGIN, NEGATIVE}, enabled = true)
+    public void testWhenLoginWithIncorrectCredentials_thenGetError() {
+        try {
+            String activeUrl = config.getBaseUrl() + config.getLoginUrlApi();
+            String incorrectLoginText = httpApiClient.getIncorrectLoginText(activeUrl);
+            logger.debug("Incorrect login text = " + incorrectLoginText);
+
+            assertThat("Login is incorrect", incorrectLoginText, is(config.getIncorrectLoginText()));
         } catch (IOException e) {
             logger.error("Failed with IOException {}", e.getMessage());
             fail("Failed with IOException: " + e.getMessage());

@@ -15,6 +15,7 @@ public enum LookupOrder {
     FILE_DEFAULT (new ArrayList<> (Arrays.asList(FILE, DEFAULT_VALUES))),
     FILE_ENV_DEFAULT (new ArrayList<> (Arrays.asList(FILE, ENV, DEFAULT_VALUES))),
     DEFAULT_ENV_FILE (new ArrayList<> (Arrays.asList(DEFAULT_VALUES, ENV, FILE))),
+    DEFAULT_ONLY (new ArrayList<> (Collections.singletonList(DEFAULT_VALUES))),
     YAML_ONLY (new ArrayList<> (Collections.singletonList(YAML))),
     ENV_YAML_FILE_DEFAULT (new ArrayList<> (Arrays.asList(ENV, YAML, FILE, DEFAULT_VALUES)));
 

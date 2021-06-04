@@ -34,6 +34,8 @@ public class AbstractConfig {
     protected String loginUrl; //Accessed via Java reflection
     @Setter
     protected String loginUrlApi; //Accessed via Java reflection
+    @Setter
+    protected String incorrectLoginText; //Accessed via Java reflection
 
     protected String getValue(String field) {
         return getValueFromEnvironmentVariables(field);

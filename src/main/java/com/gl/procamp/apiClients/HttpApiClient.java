@@ -9,6 +9,8 @@ import static com.gl.procamp.tests.repository.ApiCallsConstants.POST_REQUEST;
 import static com.gl.procamp.tests.repository.ApiCallsConstants.PUT_REQUEST;
 import static com.gl.procamp.tests.repository.ApiCallsConstants.READ_TIMEOUT;
 import static com.gl.procamp.tests.repository.ApiCallsConstants.TEXT_HTML;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -38,13 +40,37 @@ public class HttpApiClient extends AbstractHttpApiClient {
         getConnectionWithPostForLogin(activeUrl);
 
         int actualStatusCode = connection.getResponseCode();
+        assertThat("Status code is not 200", actualStatusCode, is(200));
         String response = getResponseText(actualStatusCode, connection);
 
-        AuthResponse authResponse = new Gson().fromJson(response, AuthResponse.class);
-        String actualLoginToken = authResponse.getToken();
+        String actualLoginToken = parseResponseExtractLoginToken(response);
         logger.info("Actual Login Token  for {} is {}", activeUrl, actualLoginToken);
 
         return actualLoginToken;
+    }
+
+    private String parseResponseExtractLoginToken(String response) {
+        AuthResponse authResponse = new Gson().fromJson(response, AuthResponse.class);
+        String actualLoginToken = authResponse.getToken();
+        return actualLoginToken;
+    }
+
+    public String getIncorrectLoginText(String activeUrl) throws IOException {
+        getConnectionWithPostForIncorrectLogin(activeUrl);
+
+        int actualStatusCode = connection.getResponseCode();
+        assertThat("Status code is not 401", actualStatusCode, is(401));
+        return getErrorStreamText();
+    }
+
+    private String getErrorStreamText() throws IOException {
+        BufferedReader r = new BufferedReader(new InputStreamReader(connection.getErrorStream()));
+        StringBuilder total = new StringBuilder();
+        String line;
+        while ((line = r.readLine()) != null) {
+            total.append(line);
+        }
+        return total.toString();
     }
 
     public String getPage(String activeUrl) throws IOException {
@@ -95,6 +121,18 @@ public class HttpApiClient extends AbstractHttpApiClient {
     }
 
     private void getConnectionWithPostForLogin(String activeUrl) throws IOException {
+        setPostHeaders(activeUrl);
+        setAuthHeader(connection);
+        setBodyForLoginApi(connection);
+    }
+
+    private void getConnectionWithPostForIncorrectLogin(String activeUrl) throws IOException {
+        setPostHeaders(activeUrl);
+        setAuthHeaderWithIncorrectCredentials(connection);
+        setBodyForLoginApi(connection);
+    }
+
+    private void setPostHeaders(String activeUrl) throws IOException {
         URL url = new URL(activeUrl);
         connection = (HttpURLConnection) url.openConnection();
         connection.setRequestMethod(POST_REQUEST);
@@ -104,8 +142,6 @@ public class HttpApiClient extends AbstractHttpApiClient {
         connection.setUseCaches(false);
         connection.setDoOutput(true); // indicates POST method
         connection.setDoInput(true);
-        setAuthHeader(connection);
-        setBodyForLoginApi(connection);
     }
 
     private void getConnectionWithPut(String activeUrl) throws IOException {

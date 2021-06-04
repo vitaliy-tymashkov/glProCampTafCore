@@ -1,5 +1,6 @@
 package com.gl.procamp.config;
 
+import static com.gl.procamp.config.LookupOrder.DEFAULT_ONLY;
 import static com.gl.procamp.config.LookupOrder.ENV_FILE_DEFAULT;
 import static com.gl.procamp.config.LookupOrder.ENV_YAML_FILE_DEFAULT;
 import static com.gl.procamp.config.LookupOrder.FILE_DEFAULT;
@@ -96,5 +97,13 @@ public class Config extends AbstractConfig {
 
     public String getLoginFrom(LookupOrder lookupOrder) {
         return getValue(getTarget(), "loginFrom", lookupOrder);
+    }
+
+    public String getIncorrectLoginText() {
+        return getValue(getTarget(), "incorrectLoginText", DEFAULT_ONLY);
+    }
+
+    public String getIncorrectLoginText(LookupOrder lookupOrder) {
+        return getValue(getTarget(), "incorrectLoginText", lookupOrder);
     }
 }
