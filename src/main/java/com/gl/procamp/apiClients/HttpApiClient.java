@@ -11,6 +11,8 @@ import static com.gl.procamp.tests.repository.ApiCallsConstants.READ_TIMEOUT;
 import static com.gl.procamp.tests.repository.ApiCallsConstants.TEXT_HTML;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
+import static org.testng.Assert.fail;
+import static org.testng.AssertJUnit.assertFalse;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -27,25 +29,39 @@ public class HttpApiClient extends AbstractHttpApiClient {
     private static final Logger logger = LoggerFactory.getLogger(HttpApiClient.class);
     private HttpURLConnection connection;
 
-    public int getStatusCode(String activeUrl) throws IOException {
-        getConnection(activeUrl);
+    public int getStatusCode(String activeUrl) {
+        try {
+            getConnection(activeUrl);
 
-        int actualStatusCode = connection.getResponseCode();
-        logger.info("Actual Status Code for {} is {}", activeUrl, actualStatusCode);
+            int actualStatusCode = connection.getResponseCode();
+            logger.info("Actual Status Code for {} is {}", activeUrl, actualStatusCode);
 
-        return actualStatusCode;
+            return actualStatusCode;
+        } catch (IOException e) {
+            fail("Failed with IOException: " + e.getMessage());
+        }
+        return 0;
     }
 
-    public String getLoginToken(String activeUrl) throws IOException {
-        getConnectionWithPostForLogin(activeUrl);
+    public String getLoginToken() {
+        String activeUrl = config.getBaseUrl() + config.getLoginUrlApi();
+        String actualLoginToken = null;
+        try {
+            getConnectionWithPostForLogin(activeUrl);
 
-        int actualStatusCode = connection.getResponseCode();
-        assertThat("Status code is not 200", actualStatusCode, is(200));
-        String response = getResponseText(actualStatusCode, connection);
+            int actualStatusCode = connection.getResponseCode();
+            assertThat("Status code is not 200", actualStatusCode, is(200));
+            String response = getResponseText(actualStatusCode, connection);
 
-        String actualLoginToken = parseResponseExtractLoginToken(response);
-        logger.info("Actual Login Token  for {} is {}", activeUrl, actualLoginToken);
+            actualLoginToken = parseResponseExtractLoginToken(response);
+            logger.info("Actual Login Token  for {} is {}", activeUrl, actualLoginToken);
 
+            assertFalse("Login Token is empty", actualLoginToken.isEmpty());
+            logger.debug("Login token = " + actualLoginToken);
+        } catch (IOException e) {
+            logger.error("Failed with IOException {}", e.getMessage());
+            fail("Failed with IOException: " + e.getMessage());
+        }
         return actualLoginToken;
     }
 
@@ -55,12 +71,18 @@ public class HttpApiClient extends AbstractHttpApiClient {
         return actualLoginToken;
     }
 
-    public String getIncorrectLoginText(String activeUrl) throws IOException {
-        getConnectionWithPostForIncorrectLogin(activeUrl);
+    public String getIncorrectLoginText(String activeUrl) {
+        try {
+            getConnectionWithPostForIncorrectLogin(activeUrl);
 
-        int actualStatusCode = connection.getResponseCode();
-        assertThat("Status code is not 401", actualStatusCode, is(401));
-        return getErrorStreamText();
+            int actualStatusCode = connection.getResponseCode();
+            assertThat("Status code is not 401", actualStatusCode, is(401));
+            return getErrorStreamText();
+        } catch (IOException e) {
+            logger.error("Failed with IOException {}", e.getMessage());
+            fail("Failed with IOException: " + e.getMessage());
+        }
+        return null;
     }
 
     private String getErrorStreamText() throws IOException {
@@ -73,14 +95,23 @@ public class HttpApiClient extends AbstractHttpApiClient {
         return total.toString();
     }
 
-    public String getPage(String activeUrl) throws IOException {
-        getConnection(activeUrl);
-        int actualStatusCode = connection.getResponseCode();
-        BufferedReader streamReader = getStreamForActualStatusCode(actualStatusCode);
-        StringBuilder content = getContent(streamReader);
-        streamReader.close();
+    public String getPage(String activeUrl) {
+        try {
+            getConnection(activeUrl);
+            int actualStatusCode = connection.getResponseCode();
+            BufferedReader streamReader = getStreamForActualStatusCode(actualStatusCode);
+            StringBuilder content = getContent(streamReader);
+            streamReader.close();
 
-        return content.toString();
+            return content.toString();
+        } catch (IOException e) {
+            logger.error("Failed with IOException {}", e.getMessage());
+            fail("Failed with IOException: " + e.getMessage());
+        } catch (IndexOutOfBoundsException e) {
+            logger.error("Failed to find title {}", e.getMessage());
+            fail("Failed to find title: " + e.getMessage());
+        }
+        return null;
     }
 
     private StringBuilder getContent(BufferedReader streamReader) throws IOException {
