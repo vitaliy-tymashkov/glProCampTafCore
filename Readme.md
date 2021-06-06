@@ -61,3 +61,26 @@ _password in plain text is committed only for testing purpose_
 5.1.2. Files config. properties and envXXXX.properties (depending on env variable "target").
 
 5.1.3. Default values in default.properties.
+
+5.1.4. To add a new value to the config files plese do the following:
+
+5.1.4.1. First and the main location is the "default.properties" file. Other files are optional.
+
+5.1.4.2. In code add:
+
+        To the AbstractConfig.java - field for a new value with @Setter annotation
+        To the Config.java - 
+            1) Getter without arguments, where you can add default parsing order:
+            (DEFAULT_ONLY, YAML_FILE_DEFAULT, etc. - refer to the LookupOrder.java)
+            2) Optional Getter with desired parsing order.
+        To the ConfigConstants.java - add the proper constant to use in code.
+        To the ConfigReader.java - add seting of the value in setConfigProperties(). 
+
+
+**Todo List:**
+
+1) Update Keystore with salted values
+
+2) Introduce test with RestAssured
+
+3) Put all Status Codes to external variables
