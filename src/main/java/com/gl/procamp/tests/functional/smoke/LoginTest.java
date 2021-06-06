@@ -11,6 +11,7 @@ import static org.hamcrest.Matchers.is;
 import static org.testng.AssertJUnit.assertFalse;
 
 import com.gl.procamp.config.LookupOrder;
+import com.gl.procamp.tests.functional.AbstractBaseTest;
 import com.gl.procamp.tests.repository.TestsConstants;
 import org.testng.annotations.Test;
 
@@ -18,7 +19,7 @@ import org.testng.annotations.Test;
  * Set up ENV variables
  * KS_PASS=**************;KS_PATH=keystore.ks;target=UAT
  */
-public class LoginTest extends AbstractLoginTest {
+public class LoginTest extends AbstractBaseTest {
 
     @Test(groups = {SMOKE_TEST, COSMOS_ID})
     public void testLoginStatusCode() {
