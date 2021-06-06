@@ -3,10 +3,12 @@ package com.gl.procamp.helpers;
 import static com.gl.procamp.config.ConfigConstants.AUTH_TYPE;
 import static com.gl.procamp.config.ConfigConstants.BASE_URL_KEY;
 import static com.gl.procamp.config.ConfigConstants.EXPIRY;
+import static com.gl.procamp.config.ConfigConstants.FILES_URL_API;
 import static com.gl.procamp.config.ConfigConstants.INCORRECT_LOGIN_TEXT;
 import static com.gl.procamp.config.ConfigConstants.LOGIN_FROM;
 import static com.gl.procamp.config.ConfigConstants.LOGIN_URL;
 import static com.gl.procamp.config.ConfigConstants.LOGIN_URL_API;
+import static com.gl.procamp.config.ConfigConstants.X_TOKEN;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -39,6 +41,8 @@ public class ConfigReader {
         config.setBaseUrl(properties.getProperty(BASE_URL_KEY));
         config.setLoginUrl(properties.getProperty(LOGIN_URL));
         config.setLoginUrlApi(properties.getProperty(LOGIN_URL_API));
+        config.setXToken(properties.getProperty(X_TOKEN));
+        config.setFilesUrlApi(properties.getProperty(FILES_URL_API));
         config.setIncorrectLoginText(properties.getProperty(INCORRECT_LOGIN_TEXT));
     }
 }

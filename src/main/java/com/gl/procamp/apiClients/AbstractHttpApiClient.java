@@ -12,7 +12,9 @@ import java.util.Base64;
 
 import com.gl.procamp.config.Config;
 import com.gl.procamp.helpers.KeyStoreUtility;
+import com.gl.procamp.tests.model.AuthResponse;
 import com.google.common.primitives.Chars;
+import com.google.gson.Gson;
 
 public class AbstractHttpApiClient {
     protected static final String BASIC_AUTH = "BASIC";
@@ -83,5 +85,11 @@ public class AbstractHttpApiClient {
                 byteBuffer.position(), byteBuffer.limit());
         Arrays.fill(byteBuffer.array(), (byte) 0); // clear sensitive data
         return bytes;
+    }
+
+    protected String parseResponseExtractLoginToken(String response) {
+        AuthResponse authResponse = new Gson().fromJson(response, AuthResponse.class);
+        String actualLoginToken = authResponse.getToken();
+        return actualLoginToken;
     }
 }

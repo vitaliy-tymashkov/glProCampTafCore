@@ -29,11 +29,15 @@ public class AbstractConfig {
     @Setter
     protected String loginFrom; //Accessed via Java reflection
     @Setter
+    protected String xToken; //Accessed via Java reflection
+    @Setter
     protected String baseUrl; //Accessed via Java reflection
     @Setter
     protected String loginUrl; //Accessed via Java reflection
     @Setter
     protected String loginUrlApi; //Accessed via Java reflection
+    @Setter
+    protected String filesUrlApi; //Accessed via Java reflection
     @Setter
     protected String incorrectLoginText; //Accessed via Java reflection
 
@@ -86,7 +90,12 @@ public class AbstractConfig {
         }
         Yaml yaml = new Yaml();
         Map<String, Object> data = yaml.load(inputStream);
-        return data.get(field).toString();
+        try {
+            return data.get(field).toString();
+        } catch (NullPointerException e) {
+            logger.error("NPE when parsing YAML for {}", field);
+        }
+        return null;
     }
 
     private String getValueFromDef(Env env, String field) {

@@ -19,9 +19,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Map;
 
-import com.gl.procamp.tests.model.AuthResponse;
-import com.google.gson.Gson;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -65,12 +64,6 @@ public class HttpApiClient extends AbstractHttpApiClient {
         return actualLoginToken;
     }
 
-    private String parseResponseExtractLoginToken(String response) {
-        AuthResponse authResponse = new Gson().fromJson(response, AuthResponse.class);
-        String actualLoginToken = authResponse.getToken();
-        return actualLoginToken;
-    }
-
     public String getIncorrectLoginText(String activeUrl) {
         try {
             getConnectionWithPostForIncorrectLogin(activeUrl);
@@ -94,10 +87,17 @@ public class HttpApiClient extends AbstractHttpApiClient {
         }
         return total.toString();
     }
-
     public String getPage(String activeUrl) {
+        return getPage(activeUrl, null);
+    }
+
+    public String getPage(String activeUrl, Map<String, String> headers) {
         try {
-            getConnection(activeUrl);
+            if (headers == null) {
+                getConnection(activeUrl);
+            } else {
+                getConnection(activeUrl, headers);
+            }
             int actualStatusCode = connection.getResponseCode();
             BufferedReader streamReader = getStreamForActualStatusCode(actualStatusCode);
             StringBuilder content = getContent(streamReader);
@@ -140,6 +140,13 @@ public class HttpApiClient extends AbstractHttpApiClient {
         connection.setRequestProperty(ACCEPT, TEXT_HTML);
         connection.setConnectTimeout(CONNECTION_TIMEOUT);
         connection.setReadTimeout(READ_TIMEOUT);
+    }
+
+    private void getConnection(String activeUrl, Map<String, String> headers) throws IOException {
+        getConnection(activeUrl);
+        for (Map.Entry<String, String> entry: headers.entrySet()) {
+            connection.setRequestProperty(entry.getKey(), entry.getValue());
+        }
     }
 
     private void getConnectionWithPost(String activeUrl) throws IOException {

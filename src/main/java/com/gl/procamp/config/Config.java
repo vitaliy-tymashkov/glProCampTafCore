@@ -63,6 +63,10 @@ public class Config extends AbstractConfig {
         return getValue(getTarget(), "loginUrl", YAML_ONLY);
     }
 
+    public String getFilesUrlApi() {
+        return getValue(getTarget(), "filesUrlApi", ENV_FILE_DEFAULT);
+    }
+
     public String getLoginUrl(LookupOrder lookupOrder) {
         return getValue(getTarget(), "loginUrl", lookupOrder);
     }
@@ -85,6 +89,10 @@ public class Config extends AbstractConfig {
 
     public String getExpiry() {
         return getValue(getTarget(), "expiry", ENV_YAML_FILE_DEFAULT);
+    }
+
+    public String getXToken() {
+        return getValue(getTarget(), "xToken", ENV_YAML_FILE_DEFAULT);
     }
 
     public String getExpiry(LookupOrder lookupOrder) {
