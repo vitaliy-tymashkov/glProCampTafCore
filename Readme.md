@@ -82,5 +82,3 @@ _password in plain text is committed only for testing purpose_
 1) Update Keystore with salted values
 
 2) Introduce test with RestAssured
-
-3) Put all Status Codes to external variables
