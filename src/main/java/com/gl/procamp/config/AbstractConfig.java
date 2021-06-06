@@ -40,6 +40,8 @@ public class AbstractConfig {
     protected String filesUrlApi; //Accessed via Java reflection
     @Setter
     protected String incorrectLoginText; //Accessed via Java reflection
+    @Setter
+    protected String rootFolderFlag; //Accessed via Java reflection
 
     protected String getValue(String field) {
         return getValueFromEnvironmentVariables(field);

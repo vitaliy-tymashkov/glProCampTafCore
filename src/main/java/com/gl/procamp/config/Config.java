@@ -114,4 +114,9 @@ public class Config extends AbstractConfig {
     public String getIncorrectLoginText(LookupOrder lookupOrder) {
         return getValue(getTarget(), "incorrectLoginText", lookupOrder);
     }
+
+    public String getRootFolderFlag() {
+        return getValue(getTarget(), "rootFolderFlag", ENV_YAML_FILE_DEFAULT);
+    }
+
 }

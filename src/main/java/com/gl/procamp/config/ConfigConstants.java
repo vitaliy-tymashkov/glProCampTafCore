@@ -15,4 +15,5 @@ public class ConfigConstants {
     public static final String X_TOKEN = "xToken";
     public static final String FILES_URL_API = "filesUrlApi";
     public static final String INCORRECT_LOGIN_TEXT = "incorrectLoginText";
+    public static final String ROOT_FOLDER_FLAG = "rootFolderFlag";
 }

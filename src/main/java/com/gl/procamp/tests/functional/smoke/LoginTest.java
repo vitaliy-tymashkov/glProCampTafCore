@@ -1,5 +1,6 @@
 package com.gl.procamp.tests.functional.smoke;
 
+import static com.gl.procamp.tests.repository.TestsConstants.LOGIN_PAGE_MATCHER;
 import static com.gl.procamp.tests.repository.TestsGroupConstants.COSMOS_ID;
 import static com.gl.procamp.tests.repository.TestsGroupConstants.LOGIN;
 import static com.gl.procamp.tests.repository.TestsGroupConstants.NEGATIVE;
@@ -46,7 +47,7 @@ public class LoginTest extends AbstractLoginTest {
     public void testLoginPageTitle() {
         String activeUrl = config.getBaseUrl() + config.getLoginUrl();
         String actualPage = httpApiClient.getPage(activeUrl);
-        String actualLoginPageTitle = getActualLoginPageTitle(actualPage);
+        String actualLoginPageTitle = parsePageWithMatcher(actualPage, LOGIN_PAGE_MATCHER);
 
         assertThat("Login page title is not correct",
                 actualLoginPageTitle, is(TestsConstants.EXPECTED_LOGIN_PAGE_TITLE));

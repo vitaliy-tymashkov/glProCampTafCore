@@ -8,6 +8,7 @@ import static com.gl.procamp.config.ConfigConstants.INCORRECT_LOGIN_TEXT;
 import static com.gl.procamp.config.ConfigConstants.LOGIN_FROM;
 import static com.gl.procamp.config.ConfigConstants.LOGIN_URL;
 import static com.gl.procamp.config.ConfigConstants.LOGIN_URL_API;
+import static com.gl.procamp.config.ConfigConstants.ROOT_FOLDER_FLAG;
 import static com.gl.procamp.config.ConfigConstants.X_TOKEN;
 
 import java.io.FileInputStream;
@@ -44,5 +45,6 @@ public class ConfigReader {
         config.setXToken(properties.getProperty(X_TOKEN));
         config.setFilesUrlApi(properties.getProperty(FILES_URL_API));
         config.setIncorrectLoginText(properties.getProperty(INCORRECT_LOGIN_TEXT));
+        config.setRootFolderFlag(properties.getProperty(ROOT_FOLDER_FLAG));
     }
 }

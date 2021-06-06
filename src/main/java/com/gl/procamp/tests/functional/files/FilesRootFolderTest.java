@@ -1,18 +1,17 @@
 package com.gl.procamp.tests.functional.files;
 
+import static com.gl.procamp.tests.repository.TestsConstants.ID_FOLDER_MATCHER;
 import static com.gl.procamp.tests.repository.TestsGroupConstants.COSMOS_ID;
 import static com.gl.procamp.tests.repository.TestsGroupConstants.FILES_ROOT_FOLDER;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
+import static org.hamcrest.Matchers.equalTo;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import com.gl.procamp.tests.functional.BaseTest;
+import com.gl.procamp.tests.functional.smoke.AbstractLoginTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class FilesRootFolderTest extends BaseTest {
+public class FilesRootFolderTest extends AbstractLoginTest {
 
     private String loginToken;
 
@@ -26,12 +25,15 @@ public class FilesRootFolderTest extends BaseTest {
     public void testWhenGetFilesRootFolder_thenGetRootContent() {
 
         String activeUrl = config.getBaseUrl() + config.getFilesUrlApi();
-        Map<String, String> headers = new HashMap<>();
-        headers.put(config.getXToken(), loginToken);
-        String actualPage = httpApiClient.getPage(activeUrl, headers);
+        String actualPage = httpApiClient.getPage(activeUrl, getHeadersXTokenMap(loginToken));
 
-        //TODO Introduce business logic assertions
         assertThat("Response doesn't contain ROOT object",
-                actualPage, containsString("\"name\": \"ROOT\""));
+                actualPage, containsString(config.getRootFolderFlag()));
+
+        String idRootFolder = parsePageWithMatcher(actualPage, ID_FOLDER_MATCHER);
+        assertThat("Response doesn't match folder id",
+                idRootFolder, equalTo("84c966d5-8dce-429d-8f92-44d5e28b1581"));
+    //TODO Introduce business logic assertions
+
     }
 }
