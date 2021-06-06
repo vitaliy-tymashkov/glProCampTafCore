@@ -10,7 +10,7 @@ import static com.gl.procamp.tests.repository.ApiCallsConstants.PUT_REQUEST;
 import static com.gl.procamp.tests.repository.ApiCallsConstants.READ_TIMEOUT;
 import static com.gl.procamp.tests.repository.ApiCallsConstants.TEXT_HTML;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.equalTo;
 import static org.testng.Assert.fail;
 import static org.testng.AssertJUnit.assertFalse;
 
@@ -49,7 +49,8 @@ public class HttpApiClient extends AbstractHttpApiClient {
             getConnectionWithPostForLogin(activeUrl);
 
             int actualStatusCode = connection.getResponseCode();
-            assertThat("Status code is not 200", actualStatusCode, is(200));
+            assertThat("Status code is not " + config.getStatusCodeSuccess(),
+                    String.valueOf(actualStatusCode), equalTo(config.getStatusCodeSuccess()));
             String response = getResponseText(actualStatusCode, connection);
 
             actualLoginToken = parseResponseExtractLoginToken(response);
@@ -69,7 +70,8 @@ public class HttpApiClient extends AbstractHttpApiClient {
             getConnectionWithPostForIncorrectLogin(activeUrl);
 
             int actualStatusCode = connection.getResponseCode();
-            assertThat("Status code is not 401", actualStatusCode, is(401));
+            assertThat("Status code is not " + config.getStatusCodeNotAuthenticated(),
+                    String.valueOf(actualStatusCode), equalTo(config.getStatusCodeNotAuthenticated()));
             return getErrorStreamText();
         } catch (IOException e) {
             logger.error("Failed with IOException {}", e.getMessage());

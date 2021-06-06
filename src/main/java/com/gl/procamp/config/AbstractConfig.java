@@ -42,6 +42,10 @@ public class AbstractConfig {
     protected String incorrectLoginText; //Accessed via Java reflection
     @Setter
     protected String rootFolderFlag; //Accessed via Java reflection
+    @Setter
+    protected String statusCodeSuccess; //Accessed via Java reflection
+    @Setter
+    protected String statusCodeNotAuthenticated; //Accessed via Java reflection
 
     protected String getValue(String field) {
         return getValueFromEnvironmentVariables(field);

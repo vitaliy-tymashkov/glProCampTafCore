@@ -119,4 +119,12 @@ public class Config extends AbstractConfig {
         return getValue(getTarget(), "rootFolderFlag", ENV_YAML_FILE_DEFAULT);
     }
 
+    public String getStatusCodeSuccess() {
+        return getValue(getTarget(), "statusCodeSuccess", ENV_YAML_FILE_DEFAULT);
+    }
+
+    public String getStatusCodeNotAuthenticated() {
+        return getValue(getTarget(), "statusCodeNotAuthenticated", ENV_YAML_FILE_DEFAULT);
+    }
+
 }

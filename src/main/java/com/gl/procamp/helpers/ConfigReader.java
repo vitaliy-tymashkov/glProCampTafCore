@@ -9,6 +9,8 @@ import static com.gl.procamp.config.ConfigConstants.LOGIN_FROM;
 import static com.gl.procamp.config.ConfigConstants.LOGIN_URL;
 import static com.gl.procamp.config.ConfigConstants.LOGIN_URL_API;
 import static com.gl.procamp.config.ConfigConstants.ROOT_FOLDER_FLAG;
+import static com.gl.procamp.config.ConfigConstants.STATUS_CODE_NOT_AUTHENTICATED;
+import static com.gl.procamp.config.ConfigConstants.STATUS_CODE_SUCCESS;
 import static com.gl.procamp.config.ConfigConstants.X_TOKEN;
 
 import java.io.FileInputStream;
@@ -46,5 +48,7 @@ public class ConfigReader {
         config.setFilesUrlApi(properties.getProperty(FILES_URL_API));
         config.setIncorrectLoginText(properties.getProperty(INCORRECT_LOGIN_TEXT));
         config.setRootFolderFlag(properties.getProperty(ROOT_FOLDER_FLAG));
+        config.setStatusCodeSuccess(properties.getProperty(STATUS_CODE_SUCCESS));
+        config.setStatusCodeNotAuthenticated(properties.getProperty(STATUS_CODE_NOT_AUTHENTICATED));
     }
 }

@@ -6,6 +6,7 @@ import static com.gl.procamp.tests.repository.TestsGroupConstants.LOGIN;
 import static com.gl.procamp.tests.repository.TestsGroupConstants.NEGATIVE;
 import static com.gl.procamp.tests.repository.TestsGroupConstants.SMOKE_TEST;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 import static org.testng.AssertJUnit.assertFalse;
 
@@ -25,7 +26,7 @@ public class LoginTest extends AbstractLoginTest {
         int actualStatusCode = httpApiClient.getStatusCode(activeUrl);
 
         assertThat("Login page status code is not success",
-                actualStatusCode, is(TestsConstants.EXPECTED_STATUS_CODE_SUCCESS));
+                String.valueOf(actualStatusCode), equalTo(config.getStatusCodeSuccess()));
     }
 
     @Test(groups = {SMOKE_TEST, COSMOS_ID, LOGIN})
