@@ -1,6 +1,6 @@
-package com.gl.procamp.tests.builders;
+package com.gl.procamp.helpers.builders;
 
-import com.gl.procamp.tests.model.files.FilesUrlParams;
+import com.gl.procamp.helpers.model.files.FilesUrlParams;
 
 public class FilesUrlParamsBuilder {
     public static FilesUrlParams setUrlParams(String idRootFolder) {

@@ -1,7 +1,7 @@
-package com.gl.procamp.tests.functional;
+package com.gl.procamp.tests;
 
-import static com.gl.procamp.tests.repository.TestsGroupConstants.COSMOS_ID;
-import static com.gl.procamp.tests.repository.TestsGroupConstants.SMOKE_TEST;
+import static com.gl.procamp.helpers.repository.TestsGroupConstants.COSMOS_ID;
+import static com.gl.procamp.helpers.repository.TestsGroupConstants.SMOKE_TEST;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -16,6 +16,10 @@ import org.slf4j.LoggerFactory;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 
+/**
+ * Set up ENV variables
+ * KS_PASS=**************;KS_PATH=keystore.ks;target=UAT
+ */
 @Epic("Login")
 public abstract class AbstractBaseTest {
     protected  static final Logger logger = LoggerFactory.getLogger(AbstractBaseTest.class);

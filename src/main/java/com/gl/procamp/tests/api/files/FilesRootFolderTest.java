@@ -1,10 +1,10 @@
-package com.gl.procamp.tests.functional.files;
+package com.gl.procamp.tests.api.files;
 
-import static com.gl.procamp.tests.builders.FilesUrlParamsBuilder.setUrlParams;
-import static com.gl.procamp.tests.repository.TestsConstants.ID_FOLDER_MATCHER;
-import static com.gl.procamp.tests.repository.TestsConstants.TOTAL_ITEMS_MATCHER;
-import static com.gl.procamp.tests.repository.TestsGroupConstants.COSMOS_ID;
-import static com.gl.procamp.tests.repository.TestsGroupConstants.FILES_ROOT_FOLDER;
+import static com.gl.procamp.helpers.builders.FilesUrlParamsBuilder.setUrlParams;
+import static com.gl.procamp.helpers.repository.TestsConstants.ID_FOLDER_MATCHER;
+import static com.gl.procamp.helpers.repository.TestsConstants.TOTAL_ITEMS_MATCHER;
+import static com.gl.procamp.helpers.repository.TestsGroupConstants.COSMOS_ID;
+import static com.gl.procamp.helpers.repository.TestsGroupConstants.FILES_ROOT_FOLDER;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.equalTo;
@@ -21,7 +21,6 @@ import org.testng.annotations.Test;
 
 @Epic("Files")
 @Feature("Root Folder")
-@Story("Count of requested items")
 @Severity(value = SeverityLevel.BLOCKER)
 public class FilesRootFolderTest extends AbstractFilesRootFolderTest {
 
@@ -53,6 +52,7 @@ public class FilesRootFolderTest extends AbstractFilesRootFolderTest {
      * </pre>
      */
     @Description(useJavaDoc = true)
+    @Story("Count of requested items")
     @Step("Get Root folder and count items content")
     @Test(groups = {COSMOS_ID, FILES_ROOT_FOLDER})
     public void testWhenGetFilesRootFolder_thenGetRootContent() {

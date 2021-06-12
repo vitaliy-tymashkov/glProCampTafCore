@@ -1,4 +1,4 @@
-package com.gl.procamp.tests.repository;
+package com.gl.procamp.helpers.repository;
 
 public class ApiCallsConstants {
     public final static String GET_REQUEST = "GET";

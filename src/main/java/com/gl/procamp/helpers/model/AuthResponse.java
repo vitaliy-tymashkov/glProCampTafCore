@@ -1,4 +1,4 @@
-package com.gl.procamp.tests.model;
+package com.gl.procamp.helpers.model;
 
 import lombok.Getter;
 import lombok.Setter;

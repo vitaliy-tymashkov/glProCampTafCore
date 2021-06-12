@@ -1,4 +1,4 @@
-package com.gl.procamp.tests.repository;
+package com.gl.procamp.helpers.repository;
 
 public class TestsGroupConstants {
     public final static String SMOKE_TEST = "SmokeTest";

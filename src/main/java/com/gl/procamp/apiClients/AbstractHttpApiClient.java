@@ -12,7 +12,7 @@ import java.util.Base64;
 
 import com.gl.procamp.config.Config;
 import com.gl.procamp.helpers.KeyStoreUtility;
-import com.gl.procamp.tests.model.AuthResponse;
+import com.gl.procamp.helpers.model.AuthResponse;
 import com.google.common.primitives.Chars;
 import com.google.gson.Gson;
 

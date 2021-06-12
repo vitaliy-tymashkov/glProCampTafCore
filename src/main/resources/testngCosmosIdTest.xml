@@ -8,7 +8,7 @@
     </groups>
     <test name="Login Page">
         <classes>
-            <class name="com.gl.procamp.tests.functional.smoke.LoginTest"/>
+            <class name="com.gl.procamp.tests.smoke.LoginSmokeTest"/>
         </classes>
     </test>
 </suite>

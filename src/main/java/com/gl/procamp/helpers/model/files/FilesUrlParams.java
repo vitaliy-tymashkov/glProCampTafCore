@@ -1,4 +1,4 @@
-package com.gl.procamp.tests.model.files;
+package com.gl.procamp.helpers.model.files;
 
 import java.util.HashMap;
 import java.util.Map;

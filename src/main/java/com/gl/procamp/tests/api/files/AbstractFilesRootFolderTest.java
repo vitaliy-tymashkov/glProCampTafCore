@@ -1,9 +1,9 @@
-package com.gl.procamp.tests.functional.files;
+package com.gl.procamp.tests.api.files;
 
 import java.util.Map;
 
-import com.gl.procamp.tests.functional.AbstractBaseTest;
-import com.gl.procamp.tests.model.files.FilesUrlParams;
+import com.gl.procamp.tests.AbstractBaseTest;
+import com.gl.procamp.helpers.model.files.FilesUrlParams;
 
 public class AbstractFilesRootFolderTest extends AbstractBaseTest {
     protected FilesUrlParams filesUrlParams;

@@ -8,7 +8,7 @@
     </groups>
     <test name="Root Folder Content API Test">
         <classes>
-            <class name="com.gl.procamp.tests.functional.files.FilesRootFolderTest"/>
+            <class name="com.gl.procamp.tests.api.files.FilesRootFolderTest"/>
         </classes>
     </test>
 </suite>

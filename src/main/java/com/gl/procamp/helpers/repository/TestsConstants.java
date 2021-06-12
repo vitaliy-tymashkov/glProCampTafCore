@@ -1,4 +1,4 @@
-package com.gl.procamp.tests.repository;
+package com.gl.procamp.helpers.repository;
 
 public class TestsConstants {
     public final static String EXPECTED_LOGIN_PAGE_TITLE = "CosmosID";

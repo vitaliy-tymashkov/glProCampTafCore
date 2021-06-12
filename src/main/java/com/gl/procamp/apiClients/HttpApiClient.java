@@ -1,14 +1,14 @@
 package com.gl.procamp.apiClients;
 
-import static com.gl.procamp.tests.repository.ApiCallsConstants.ACCEPT;
-import static com.gl.procamp.tests.repository.ApiCallsConstants.APP_JSON_TEXT_JS_ALL_ALL;
-import static com.gl.procamp.tests.repository.ApiCallsConstants.CONNECTION_TIMEOUT;
-import static com.gl.procamp.tests.repository.ApiCallsConstants.DELETE_REQUEST;
-import static com.gl.procamp.tests.repository.ApiCallsConstants.GET_REQUEST;
-import static com.gl.procamp.tests.repository.ApiCallsConstants.POST_REQUEST;
-import static com.gl.procamp.tests.repository.ApiCallsConstants.PUT_REQUEST;
-import static com.gl.procamp.tests.repository.ApiCallsConstants.READ_TIMEOUT;
-import static com.gl.procamp.tests.repository.ApiCallsConstants.TEXT_HTML;
+import static com.gl.procamp.helpers.repository.ApiCallsConstants.ACCEPT;
+import static com.gl.procamp.helpers.repository.ApiCallsConstants.APP_JSON_TEXT_JS_ALL_ALL;
+import static com.gl.procamp.helpers.repository.ApiCallsConstants.CONNECTION_TIMEOUT;
+import static com.gl.procamp.helpers.repository.ApiCallsConstants.DELETE_REQUEST;
+import static com.gl.procamp.helpers.repository.ApiCallsConstants.GET_REQUEST;
+import static com.gl.procamp.helpers.repository.ApiCallsConstants.POST_REQUEST;
+import static com.gl.procamp.helpers.repository.ApiCallsConstants.PUT_REQUEST;
+import static com.gl.procamp.helpers.repository.ApiCallsConstants.READ_TIMEOUT;
+import static com.gl.procamp.helpers.repository.ApiCallsConstants.TEXT_HTML;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.testng.Assert.fail;
