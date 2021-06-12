@@ -10,11 +10,13 @@ import java.util.regex.Pattern;
 
 import com.gl.procamp.apiClients.HttpApiClient;
 import com.gl.procamp.config.Config;
+import io.qameta.allure.Epic;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 
+@Epic("Login")
 public abstract class AbstractBaseTest {
     protected  static final Logger logger = LoggerFactory.getLogger(AbstractBaseTest.class);
     protected Config config = Config.getInstance();

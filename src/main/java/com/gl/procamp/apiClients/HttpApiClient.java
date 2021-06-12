@@ -21,6 +21,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Map;
 
+import io.qameta.allure.Step;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -93,6 +94,7 @@ public class HttpApiClient extends AbstractHttpApiClient {
         return getPage(activeUrl, null);
     }
 
+    @Step("Access to {activeUrl} page")
     public String getPage(String activeUrl, Map<String, String> headers) {
         try {
             if (headers == null) {

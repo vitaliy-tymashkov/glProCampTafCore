@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="test_Root_Folder_Content_suite">
+    <groups>
+        <run>
+            <include name="FilesRootFolder"/>
+        </run>
+    </groups>
+    <test name="Root Folder Content API Test">
+        <classes>
+            <class name="com.gl.procamp.tests.functional.files.FilesRootFolderTest"/>
+        </classes>
+    </test>
+</suite>

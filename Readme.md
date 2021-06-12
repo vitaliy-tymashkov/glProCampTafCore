@@ -77,6 +77,20 @@ _password in plain text is committed only for testing purpose_
         To the ConfigReader.java - add seting of the value in setConfigProperties(). 
 
 
+6. Allure report
+
+6.1. To create and open allure report in IntelliJ:
+
+6.1.1. Set system environment variables
+        
+        set KS_PASS=Mrt#42MSs2$2
+        set KS_PATH=keystore.ks
+        set target=uat
+
+6.1.2. Run in terminal "gradlew clean test allureServe". Report will be generated as defined in TestExecutor.java class, and report will be served with internal IntelliJ server. Currently this class processes all xml files in **src/main/resources** folder (file names should end with Test - so template is *Test.xml).
+
+
+
 **Todo List:**
 
 1) Update Keystore with salted values

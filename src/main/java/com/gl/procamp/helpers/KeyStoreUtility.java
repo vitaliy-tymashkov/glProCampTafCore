@@ -13,6 +13,7 @@ import java.security.UnrecoverableEntryException;
 import java.security.cert.CertificateException;
 import java.security.spec.InvalidKeySpecException;
 
+import io.qameta.allure.Step;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 /**
@@ -121,6 +122,7 @@ public class KeyStoreUtility {
         return keySpec.getPassword();
     }
 
+    @Step("Get secret for {userAlias} from keystore")
     public static char[] getSecret(String userAlias) {
         try {
             return getSecretFromKeystore(userAlias, DATA_KEYSTORE_KS, ksPass);
