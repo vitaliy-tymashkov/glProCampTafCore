@@ -24,7 +24,7 @@ public class AbstractConfig {
 
     //All fields below are being accessed via Java reflection
     @Setter
-    protected String authType;
+    protected String authorizationType;
     @Setter
     protected String expiry;
     @Setter

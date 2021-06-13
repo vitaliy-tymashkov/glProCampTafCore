@@ -1,7 +1,7 @@
 package com.gl.procamp.helpers;
 
-import static com.gl.procamp.config.ConfigConstants.AUTH_TYPE;
-import static com.gl.procamp.config.ConfigConstants.BASE_URL_KEY;
+import static com.gl.procamp.config.ConfigConstants.AUTHORIZATION_TYPE;
+import static com.gl.procamp.config.ConfigConstants.BASE_URL;
 import static com.gl.procamp.config.ConfigConstants.EXPIRY;
 import static com.gl.procamp.config.ConfigConstants.FILES_URL_API;
 import static com.gl.procamp.config.ConfigConstants.HEADLESS_MODE;
@@ -42,10 +42,10 @@ public class ConfigReader {
     }
 
     private static void setConfigProperties(Properties properties, Config config) {
-        config.setAuthType(properties.getProperty(AUTH_TYPE));
+        config.setAuthorizationType(properties.getProperty(AUTHORIZATION_TYPE));
         config.setExpiry(properties.getProperty(EXPIRY));
         config.setLoginFrom(properties.getProperty(LOGIN_FROM));
-        config.setBaseUrl(properties.getProperty(BASE_URL_KEY));
+        config.setBaseUrl(properties.getProperty(BASE_URL));
         config.setLoginUrl(properties.getProperty(LOGIN_URL));
         config.setLoginUrlApi(properties.getProperty(LOGIN_URL_API));
         config.setXToken(properties.getProperty(X_TOKEN));
