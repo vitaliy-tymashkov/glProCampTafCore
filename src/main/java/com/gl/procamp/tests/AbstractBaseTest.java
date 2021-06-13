@@ -10,6 +10,7 @@ import java.util.regex.Pattern;
 
 import com.gl.procamp.apiClients.HttpApiClient;
 import com.gl.procamp.config.Config;
+import com.gl.procamp.helpers.validators.AbstractJsonSchemaValidator;
 import io.qameta.allure.Epic;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,7 +22,7 @@ import org.testng.annotations.BeforeClass;
  * KS_PASS=**************;KS_PATH=keystore.ks;target=UAT
  */
 @Epic("Login")
-public abstract class AbstractBaseTest {
+public abstract class AbstractBaseTest extends AbstractJsonSchemaValidator {
     protected  static final Logger logger = LoggerFactory.getLogger(AbstractBaseTest.class);
     protected Config config = Config.getInstance();
     protected HttpApiClient httpApiClient;
