@@ -12,25 +12,32 @@ import org.testng.TestNG;
 import org.testng.annotations.Test;
 
 public class TestExecutor {
-
     private static final Logger LOG = LoggerFactory.getLogger(TestExecutor.class.getName());
     private static final String SUITE_DIR = "src/main/resources/";
+    private static final String TEST_XML_NAME_TEMPLATE = "Test.xml";
 
-    @Test(testName = "TEST EXECUTOR")
+    @Test(testName = "TEST EXECUTOR LAUNCHER")
     public void executeAllTestSuites() {
-        try (Stream<Path> walk = Files.walk(Paths.get(SUITE_DIR))) {
-            List<String> suites = walk
-                    .filter(Files::isRegularFile)
-                    .filter(name -> name.getFileName().toString().endsWith("Test.xml"))
-                    .map(Path::toString)
-                    .collect(Collectors.toList());
-
-            TestNG testNg = new TestNG();
-            testNg.setSuiteThreadPoolSize(suites.size());
-            testNg.setTestSuites(suites);
+        try (Stream<Path> pathStream = Files.walk(Paths.get(SUITE_DIR))) {
+            TestNG testNg = prepareTestNgRun(getAllTestSuites(pathStream));
             testNg.run();
         } catch (IOException e) {
-            LOG.error("fail to load test suite conf", e);
+            LOG.error("Fail to load test suites", e);
         }
+    }
+
+    private TestNG prepareTestNgRun(List<String> suites) {
+        TestNG testNg = new TestNG();
+        testNg.setSuiteThreadPoolSize(suites.size());
+        testNg.setTestSuites(suites);
+        return testNg;
+    }
+
+    private List<String> getAllTestSuites(Stream<Path> pathStream) {
+        return pathStream
+                .filter(Files::isRegularFile)
+                .filter(name -> name.getFileName().toString().endsWith(TEST_XML_NAME_TEMPLATE))
+                .map(Path::toString)
+                .collect(Collectors.toList());
     }
 }
