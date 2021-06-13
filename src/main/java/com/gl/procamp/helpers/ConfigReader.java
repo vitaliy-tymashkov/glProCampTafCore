@@ -4,11 +4,13 @@ import static com.gl.procamp.config.ConfigConstants.AUTH_TYPE;
 import static com.gl.procamp.config.ConfigConstants.BASE_URL_KEY;
 import static com.gl.procamp.config.ConfigConstants.EXPIRY;
 import static com.gl.procamp.config.ConfigConstants.FILES_URL_API;
+import static com.gl.procamp.config.ConfigConstants.HEADLESS_MODE;
 import static com.gl.procamp.config.ConfigConstants.INCORRECT_LOGIN_TEXT;
 import static com.gl.procamp.config.ConfigConstants.LOGIN_FROM;
 import static com.gl.procamp.config.ConfigConstants.LOGIN_URL;
 import static com.gl.procamp.config.ConfigConstants.LOGIN_URL_API;
 import static com.gl.procamp.config.ConfigConstants.ROOT_FOLDER_FLAG;
+import static com.gl.procamp.config.ConfigConstants.SELENIUM_DRIVER_PATH;
 import static com.gl.procamp.config.ConfigConstants.STATUS_CODE_NOT_AUTHENTICATED;
 import static com.gl.procamp.config.ConfigConstants.STATUS_CODE_SUCCESS;
 import static com.gl.procamp.config.ConfigConstants.X_TOKEN;
@@ -50,5 +52,7 @@ public class ConfigReader {
         config.setRootFolderFlag(properties.getProperty(ROOT_FOLDER_FLAG));
         config.setStatusCodeSuccess(properties.getProperty(STATUS_CODE_SUCCESS));
         config.setStatusCodeNotAuthenticated(properties.getProperty(STATUS_CODE_NOT_AUTHENTICATED));
+        config.setSeleniumDriverPath(properties.getProperty(SELENIUM_DRIVER_PATH));
+        config.setHeadlessMode(properties.getProperty(HEADLESS_MODE));
     }
 }

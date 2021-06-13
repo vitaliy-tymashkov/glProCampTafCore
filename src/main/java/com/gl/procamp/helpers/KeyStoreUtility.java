@@ -129,7 +129,7 @@ public class KeyStoreUtility {
         try {
             return getSecretFromKeystore(userAlias, DATA_KEYSTORE_KS, ksPass);
         } catch (Exception e) {
-            LOGGER.error(e.getMessage());
+            LOGGER.error("Cannot get secret from keystore, probably required to set up environment variables. {}", e.getMessage());
             return null;
         }
     }

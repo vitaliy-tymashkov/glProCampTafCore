@@ -127,4 +127,12 @@ public class Config extends AbstractConfig {
         return getValue(getTarget(), "statusCodeNotAuthenticated", ENV_YAML_FILE_DEFAULT);
     }
 
+    public String getSeleniumDriverPath() {
+        return getValue(getTarget(), "seleniumDriverPath", ENV_YAML_FILE_DEFAULT);
+    }
+
+    public String getHeadlessMode() {
+        return getValue(getTarget(), "headlessMode", ENV_YAML_FILE_DEFAULT);
+    }
+
 }

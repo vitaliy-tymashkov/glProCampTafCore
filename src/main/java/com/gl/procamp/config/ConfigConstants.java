@@ -18,4 +18,6 @@ public class ConfigConstants {
     public static final String ROOT_FOLDER_FLAG = "rootFolderFlag";
     public static final String STATUS_CODE_SUCCESS = "statusCodeSuccess";
     public static final String STATUS_CODE_NOT_AUTHENTICATED = "statusCodeNotAuthenticated";
+    public static final String SELENIUM_DRIVER_PATH = "seleniumDriverPath";
+    public static final String HEADLESS_MODE = "headlessMode";
 }

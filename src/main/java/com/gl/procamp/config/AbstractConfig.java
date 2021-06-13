@@ -22,30 +22,35 @@ public class AbstractConfig {
     private static final Logger logger = LoggerFactory.getLogger(AbstractConfig.class);
     private static Config config = Config.getInstance();
 
+    //All fields below are being accessed via Java reflection
     @Setter
-    protected String authType; //Accessed via Java reflection
+    protected String authType;
     @Setter
-    protected String expiry; //Accessed via Java reflection
+    protected String expiry;
     @Setter
-    protected String loginFrom; //Accessed via Java reflection
+    protected String loginFrom;
     @Setter
-    protected String xToken; //Accessed via Java reflection
+    protected String xToken;
     @Setter
-    protected String baseUrl; //Accessed via Java reflection
+    protected String baseUrl;
     @Setter
-    protected String loginUrl; //Accessed via Java reflection
+    protected String loginUrl;
     @Setter
-    protected String loginUrlApi; //Accessed via Java reflection
+    protected String loginUrlApi;
     @Setter
-    protected String filesUrlApi; //Accessed via Java reflection
+    protected String filesUrlApi;
     @Setter
-    protected String incorrectLoginText; //Accessed via Java reflection
+    protected String incorrectLoginText;
     @Setter
-    protected String rootFolderFlag; //Accessed via Java reflection
+    protected String rootFolderFlag;
     @Setter
-    protected String statusCodeSuccess; //Accessed via Java reflection
+    protected String statusCodeSuccess;
     @Setter
-    protected String statusCodeNotAuthenticated; //Accessed via Java reflection
+    protected String statusCodeNotAuthenticated; 
+    @Setter
+    protected String seleniumDriverPath;
+    @Setter
+    protected String headlessMode;
 
     protected String getValue(String field) {
         return getValueFromEnvironmentVariables(field);
