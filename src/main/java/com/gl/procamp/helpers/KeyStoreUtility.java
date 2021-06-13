@@ -29,7 +29,7 @@ import org.slf4j.LoggerFactory;
  *
  * */
 public class KeyStoreUtility {
-    private static final Logger LOGGER = LoggerFactory.getLogger(ConfigReader.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(KeyStoreUtility.class);
 
     private static final String DATA_KEYSTORE_KS = System.getenv("KS_PATH");
     private static final String USER_KS_ALIAS = "user";
@@ -45,7 +45,9 @@ public class KeyStoreUtility {
     }
 
     public static void main(String[] args) {
-        System.out.println("KS Utils - stub message");
+        //TODO Add an option to override sys env vars with app arguments
+//Env vars for unit test: KS_PASS=testtesttest1;KS_PATH=keystore_for_unit_test.ks;user=test@test.com;password=testtesttesttest
+        System.out.println("KS Utils - stub message, please set up system environment variables and work on creation/read your secrets.");
         //Example of usage
 //        safeMakeNewKeystore();
 //        safeGetSecretFromKeystore();
