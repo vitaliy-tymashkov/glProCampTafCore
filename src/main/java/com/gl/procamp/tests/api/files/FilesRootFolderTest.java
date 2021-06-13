@@ -63,7 +63,7 @@ public class FilesRootFolderTest extends AbstractFilesRootFolderTest {
 
         String actualPageWithFolderItems = httpApiClient.getPage(getUrlWithQueryParameters(), getHeadersXTokenMap(loginToken));
 
-        validateJsonSchema(actualPageWithFolderItems, ROOT_FOLDER_RESPONSE_SCHEMA_JSON);
+        validateJsonSchema(actualPageWithFolderItems, SUB_FOLDERS_RESPONSE_SCHEMA_JSON);
 
         String totalItems = parsePageWithMatcher(actualPageWithFolderItems, TOTAL_ITEMS_MATCHER);
 
