@@ -31,9 +31,9 @@ public class LoginApiTest extends AbstractBaseTest {
     @Feature("API Login")
     @Story("Check login page not accessible with incorrect credentials")
     @Severity(value = SeverityLevel.NORMAL)
-    @Step("Check login page not accessible with incorrect credentials")
+    @Step("Request login page with incorrect credentials and get expected error text")
     @Test(groups = {SMOKE_TEST, COSMOS_ID, LOGIN, NEGATIVE}, enabled = true)
-    public void testWhenLoginWithIncorrectCredentials_thenGetError() {
+    public void testWhenLoginWithIncorrectCredentials_thenGetExpectedErrorText() {
         String activeUrl = config.getBaseUrl() + config.getLoginUrlApi();
         String incorrectLoginText = httpApiClient.getIncorrectLoginText(activeUrl);
 

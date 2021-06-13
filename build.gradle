@@ -26,6 +26,7 @@ dependencies {
 
     compile group: 'org.hamcrest', name: 'hamcrest', version: '2.1'
     compile 'com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.8.4'
+    compile(group: "com.networknt", name: "json-schema-validator", version: "1.0.53");
 
     compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.8'
     compileOnly 'org.projectlombok:lombok:1.18.8'
@@ -37,6 +38,7 @@ dependencies {
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.8.9'
     implementation 'io.vertx:vertx-core:3.5.3'
     implementation group: 'io.qameta.allure', name: 'allure-testng', version: '2.13.2'
+    implementation group: 'io.rest-assured', name: 'json-schema-validator', version: '3.0.0'
 
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
     testImplementation group: 'org.hamcrest', name: 'hamcrest', version: '2.1'

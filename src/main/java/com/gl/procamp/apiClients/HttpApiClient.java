@@ -27,6 +27,7 @@ import org.slf4j.LoggerFactory;
 
 public class HttpApiClient extends AbstractHttpApiClient {
     private static final Logger logger = LoggerFactory.getLogger(HttpApiClient.class);
+    private static final String AUTHORIZATION_RESPONSE_SCHEMA_JSON = "schemas/AuthorizationResponseSchema.json";
     private HttpURLConnection connection;
 
     public int getStatusCode(String activeUrl) {
@@ -53,6 +54,8 @@ public class HttpApiClient extends AbstractHttpApiClient {
             assertThat("Status code is not " + config.getStatusCodeSuccess(),
                     String.valueOf(actualStatusCode), equalTo(config.getStatusCodeSuccess()));
             String response = getResponseText(actualStatusCode, connection);
+
+            validateJsonSchema(response, AUTHORIZATION_RESPONSE_SCHEMA_JSON);
 
             actualLoginToken = parseResponseExtractLoginToken(response);
             logger.info("Actual Login Token  for {} is {}", activeUrl, actualLoginToken);
@@ -90,6 +93,7 @@ public class HttpApiClient extends AbstractHttpApiClient {
         }
         return total.toString();
     }
+
     public String getPage(String activeUrl) {
         return getPage(activeUrl, null);
     }
@@ -148,7 +152,7 @@ public class HttpApiClient extends AbstractHttpApiClient {
 
     private void getConnection(String activeUrl, Map<String, String> headers) throws IOException {
         getConnection(activeUrl);
-        for (Map.Entry<String, String> entry: headers.entrySet()) {
+        for (Map.Entry<String, String> entry : headers.entrySet()) {
             connection.setRequestProperty(entry.getKey(), entry.getValue());
         }
     }

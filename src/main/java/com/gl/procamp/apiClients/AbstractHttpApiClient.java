@@ -13,10 +13,11 @@ import java.util.Base64;
 import com.gl.procamp.config.Config;
 import com.gl.procamp.helpers.KeyStoreUtility;
 import com.gl.procamp.helpers.model.AuthResponse;
+import com.gl.procamp.helpers.validators.AbstractJsonSchemaValidator;
 import com.google.common.primitives.Chars;
 import com.google.gson.Gson;
 
-public class AbstractHttpApiClient {
+public class AbstractHttpApiClient extends AbstractJsonSchemaValidator {
     protected static final String BASIC_AUTH = "BASIC";
     protected static final String AUTHORIZATION_HEADER = "Authorization";
     protected static final String BASIC_PREFIX = "Basic ";
