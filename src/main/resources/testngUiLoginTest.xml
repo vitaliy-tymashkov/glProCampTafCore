@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="UI tests suite">
+<suite name="UI Tests suite">
     <groups>
         <run>
             <include name="UiTest"/>
         </run>
     </groups>
-    <test name="UI Login Tests">
+    <test name="Login Page Tests">
         <classes>
             <class name="com.gl.procamp.tests.ui.SignInUiPageTestTest"/>
         </classes>
