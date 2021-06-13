@@ -25,6 +25,9 @@ public class SignInUiPageTestTest extends BaseUiTest {
         SignInUiPageObject signInPage = new SignInUiPageObject(BaseUiTest.driver);
         signInPage.acceptAnnouncement();
         signInPage.signInWithLoginPage(KeyStoreUtility.getSecret(USER_KS_ALIAS), KeyStoreUtility.getSecret(PASSWORD_KS_ALIAS));
-        //TODO Assert on title and some other fields
+
+        waitForPageLoaded(driver);
+        assertOnTitle();
+        assertOnNextUrl();
     }
 }

@@ -9,6 +9,8 @@ import static com.gl.procamp.config.ConfigConstants.INCORRECT_LOGIN_TEXT;
 import static com.gl.procamp.config.ConfigConstants.LOGIN_FROM;
 import static com.gl.procamp.config.ConfigConstants.LOGIN_URL;
 import static com.gl.procamp.config.ConfigConstants.LOGIN_URL_API;
+import static com.gl.procamp.config.ConfigConstants.MAIN_PAGE_DEFAULT_URL;
+import static com.gl.procamp.config.ConfigConstants.MAIN_PAGE_TITLE;
 import static com.gl.procamp.config.ConfigConstants.ROOT_FOLDER_FLAG;
 import static com.gl.procamp.config.ConfigConstants.SELENIUM_DRIVER_PATH;
 import static com.gl.procamp.config.ConfigConstants.STATUS_CODE_NOT_AUTHENTICATED;
@@ -54,5 +56,7 @@ public class ConfigReader {
         config.setStatusCodeNotAuthenticated(properties.getProperty(STATUS_CODE_NOT_AUTHENTICATED));
         config.setSeleniumDriverPath(properties.getProperty(SELENIUM_DRIVER_PATH));
         config.setHeadlessMode(properties.getProperty(HEADLESS_MODE));
+        config.setMainPageTitle(properties.getProperty(MAIN_PAGE_TITLE));
+        config.setMainPageDefaultUrl(properties.getProperty(MAIN_PAGE_DEFAULT_URL));
     }
 }

@@ -1,4 +1,4 @@
-package com.gl.procamp.tests;
+package com.gl.procamp.tests.ui.pageObjects;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable;
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
@@ -22,7 +22,8 @@ import org.slf4j.LoggerFactory;
 
 public class BasePageObject {
     private static final Logger LOGGER = LoggerFactory.getLogger(BasePageObject.class);
-    private static final String SCREENSHOTS_FILE_PATH_TEMPLATE = "screenshots/%s.png";
+    private static final String SCREENSHOTS_FILE_PATH = "screenshots";
+    private static final String SCREENSHOTS_FILE_PATH_TEMPLATE = SCREENSHOTS_FILE_PATH + "/%s.png";
     private static final String TIMESTAMP_PATTERN = "YYYY_MMM_dd_HH_mm_ss";
     private static final int TIMEOUT_IN_SECONDS = 10;
 
@@ -65,11 +66,22 @@ public class BasePageObject {
 
     @Step("Take and store screenshot")
     public void takeScreenshot() throws IOException {
+        File destinationFile = prepareFileToStoreScreenshot();
+        File screenshotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+
+        clearFolderAndStoreScreenshot(screenshotFile, destinationFile);
+    }
+
+    private File prepareFileToStoreScreenshot() {
         String generatedString = new SimpleDateFormat(TIMESTAMP_PATTERN)
                 .format(new Date(System.currentTimeMillis()));
-        File screenshotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
         File destinationFile = new File(String.format(SCREENSHOTS_FILE_PATH_TEMPLATE, generatedString));
         LOGGER.info("Screenshot stored to {}", destinationFile.getAbsoluteFile());
+        return destinationFile;
+    }
+
+    private void clearFolderAndStoreScreenshot(File screenshotFile, File destinationFile) throws IOException {
+        FileUtils.cleanDirectory(new File(SCREENSHOTS_FILE_PATH));
         FileUtils.copyFile(screenshotFile, destinationFile);
     }
 }

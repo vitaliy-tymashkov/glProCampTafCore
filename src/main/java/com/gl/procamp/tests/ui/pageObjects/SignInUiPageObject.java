@@ -1,6 +1,5 @@
 package com.gl.procamp.tests.ui.pageObjects;
 
-import com.gl.procamp.tests.BasePageObject;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;

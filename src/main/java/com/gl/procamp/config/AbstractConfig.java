@@ -51,6 +51,10 @@ public class AbstractConfig {
     protected String seleniumDriverPath;
     @Setter
     protected String headlessMode;
+    @Setter
+    protected String mainPageTitle;
+    @Setter
+    protected String mainPageDefaultUrl;
 
     protected String getValue(String field) {
         return getValueFromEnvironmentVariables(field);

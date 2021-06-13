@@ -20,4 +20,6 @@ public class ConfigConstants {
     public static final String STATUS_CODE_NOT_AUTHENTICATED = "statusCodeNotAuthenticated";
     public static final String SELENIUM_DRIVER_PATH = "seleniumDriverPath";
     public static final String HEADLESS_MODE = "headlessMode";
+    public static final String MAIN_PAGE_TITLE = "mainPageTitle";
+    public static final String MAIN_PAGE_DEFAULT_URL = "mainPageDefaultUrl";
 }

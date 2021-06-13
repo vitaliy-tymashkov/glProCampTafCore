@@ -135,4 +135,11 @@ public class Config extends AbstractConfig {
         return getValue(getTarget(), "headlessMode", ENV_YAML_FILE_DEFAULT);
     }
 
+    public String getMainPageTitle() {
+        return getValue(getTarget(), "mainPageTitle", ENV_YAML_FILE_DEFAULT);
+    }
+
+    public String getMainPageDefaultUrl() {
+        return getValue(getTarget(), "mainPageDefaultUrl", ENV_YAML_FILE_DEFAULT);
+    }
 }
