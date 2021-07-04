@@ -63,6 +63,30 @@ task allureAggregatedReport(type: AllureReport) {
     resultsDirs = subprojects.allure.resultsDir
 }
 
+task testngRunSmokeTests(type: Test) {
+    useTestNG() {
+        suites 'src/main/resources/testngSmokeTest.xml'
+    }
+}
+
+task testngRunCosmosIdTests(type: Test) {
+    useTestNG() {
+        suites 'src/main/resources/testngCosmosIdTest.xml'
+    }
+}
+
+task testngRunUiTests(type: Test) {
+    useTestNG() {
+        suites 'src/main/resources/testngUiLoginTest.xml'
+    }
+}
+
+task testngRunApiTests(type: Test) {
+    useTestNG() {
+        suites 'src/main/resources/testngApiRootFolderTest.xml'
+    }
+}
+
 test {
     useTestNG() {
     }
