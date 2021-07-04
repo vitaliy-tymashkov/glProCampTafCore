@@ -1,0 +1,8 @@
+# Config yaml-file
+authorization_type: basic
+baseUrl: https://app.cosmosid.com/
+expiry: 86400
+indexUrl: /
+loginFrom: login+page
+loginUrl: login #This field is used only from YAML
+loginUrlApi: api/v1/login

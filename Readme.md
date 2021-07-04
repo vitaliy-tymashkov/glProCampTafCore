@@ -39,3 +39,60 @@ How to run tests:
 - PUT - [x] 
 - POST - [x]
 - DELETE - [x]
+
+## Additional task
+
+4. Keystore added for sensitive information managing
+
+_Note: cleartext password here is only for educational purpose_
+
+4.1. For tests use ENV variables: KS_PASS=Mrt#42MSs2$2;KS_PATH=keystore.ks;target=uat
+
+4.2. For KeyStoreUtility use ENV variables: KS_PASS=Mrt#42MSs2$2;KS_PATH=keystore.ks;user=gl-procamp-2021@globallogic.com;password=DXdUVEFNpHA8LXm
+_password in plain text is committed only for testing purpose_
+## Config order
+
+5. Configuration
+
+5.1. Properties are being handled in the following order:
+
+5.1.1. Environment variables.
+
+5.1.2. Files config. properties and envXXXX.properties (depending on env variable "target").
+
+5.1.3. Default values in default.properties.
+
+5.1.4. To add a new value to the config files plese do the following:
+
+5.1.4.1. First and the main location is the "default.properties" file. Other files are optional.
+
+5.1.4.2. In code add:
+
+        To the AbstractConfig.java - field for a new value with @Setter annotation
+        To the Config.java - 
+            1) Getter without arguments, where you can add default parsing order:
+            (DEFAULT_ONLY, YAML_FILE_DEFAULT, etc. - refer to the LookupOrder.java)
+            2) Optional Getter with desired parsing order.
+        To the ConfigConstants.java - add the proper constant to use in code.
+        To the ConfigReader.java - add seting of the value in setConfigProperties(). 
+
+
+6. Allure report
+
+6.1. To create and open allure report in IntelliJ:
+
+6.1.1. Set system environment variables
+        
+        set KS_PASS=Mrt#42MSs2$2
+        set KS_PATH=keystore.ks
+        set target=uat
+
+6.1.2. Run in terminal "gradlew clean test allureServe". Report will be generated as defined in TestExecutor.java class, and report will be served with internal IntelliJ server. Currently this class processes all xml files in **src/main/resources** folder (file names should end with Test - so template is *Test.xml).
+
+
+
+**Todo List:**
+
+1) Update Keystore with salted values
+
+2) Introduce test with RestAssured

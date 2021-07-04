@@ -4,3 +4,8 @@
 /build/
 /out/
 /out/production/classes/
+/gradlew
+/gradlew.bat
+/gradle/
+/.allure/
+/screenshots/
